@@ -1,11 +1,11 @@
 package dev.pronunciationAppBack.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Word {
@@ -21,6 +21,14 @@ public class Word {
 
     @OneToMany(mappedBy = "word")
     private List<Pronunciation> pronunciations;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @JoinTable (
+            name = "word_category",
+            joinColumns = @JoinColumn(name = "word_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories = new HashSet<>();
 
     public Word() {}
 
@@ -110,4 +118,6 @@ public class Word {
                 ", level=" + level +
                 '}';
     }
+
+
 }

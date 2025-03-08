@@ -1,15 +1,12 @@
 package dev.pronunciationAppBack.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 
-import jakarta.persistence.Id;
 import java.util.Date;
 
 @Entity
@@ -30,4 +27,8 @@ public class StageWord {
     public enum Status {
         DONE, PENDING, FAIL
     }
+
+    @ManyToOne
+    @JoinColumn(name = "WORD_ID_FK")
+    private Word word;
 }

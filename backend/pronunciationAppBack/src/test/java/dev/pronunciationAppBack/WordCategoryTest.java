@@ -5,7 +5,7 @@ import dev.pronunciationAppBack.model.Word;
 import dev.pronunciationAppBack.repository.WordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class WordCategoryService {
+public class WordCategoryTest {
 
     @Autowired
     private WordRepository wordRepository;
